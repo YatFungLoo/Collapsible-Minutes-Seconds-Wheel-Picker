@@ -17,8 +17,13 @@ struct CollapsibleView<Label, Content>: View where Label: View, Content: View {
     
     var body: some View {
         Group {
-            Button(action: { withAnimation() {isPresentingPicker.toggle()} }, label: label)
-                .buttonStyle(.plain)
+            Button(action: { withAnimation() {isPresentingPicker.toggle()} }) {
+                HStack {
+                    label()
+                }
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
             if isPresentingPicker {
                content()
             }
